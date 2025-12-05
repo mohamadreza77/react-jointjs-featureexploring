@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as joint from "jointjs";
-import { Family, Man, Woman, HasMen, HasWomen } from "./shapes";
 import autoEmbedAll from "./util";
+import { Man, PCNProcessEntity, Woman } from "./PCNDiagram";
 
 export default function JointEditor() {
   const containerRef = useRef(null);
@@ -13,7 +13,7 @@ export default function JointEditor() {
       el: containerRef.current,
       model: graph,
       width: 900,
-      height: 600,
+      height: 900,
       gridSize: 10,
       drawGrid: true,
       restrictTranslate: function (elementView) {
@@ -37,7 +37,6 @@ export default function JointEditor() {
           // Get the BBox of that specific SVG sub-element (the compartment rect)
           // We use the view to get the actual rendered coordinates
           const parentView = elementView.paper.findViewByModel(parent);
-          // console.log(parentView);
           const compartmentNode = parentView.findBySelector(selector)[0];
           if (compartmentNode) {
             // 3. THE FIX: Use joint.V() to calculate coordinates relative to the Paper
@@ -55,7 +54,7 @@ export default function JointEditor() {
     });
 
     // Create Family
-    const family = new Family();
+    const family = new PCNProcessEntity();
     family.position(100, 100);
     family.addTo(graph);
 
