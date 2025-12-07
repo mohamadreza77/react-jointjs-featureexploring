@@ -1,10 +1,10 @@
 import * as joint from 'jointjs';
 
 // ------------------------------------------------------
-// 1) MAN
+// 1) LEFT DIRECTION
 // ------------------------------------------------------
-export const Man = joint.dia.Element.define(
-  'custom.Man',
+export const LeftDir = joint.dia.Element.define(
+  'custom.LeftDir',
   {
     size: { width: 80, height: 40 },
     attrs: {
@@ -38,10 +38,10 @@ export const Man = joint.dia.Element.define(
 
 
 // ------------------------------------------------------
-// 2) WOMAN
+// 2) LEFT SUR
 // ------------------------------------------------------
-export const Woman = joint.dia.Element.define(
-  'custom.Woman',
+export const LeftSur = joint.dia.Element.define(
+  'custom.LeftSur',
   {
     size: { width: 80, height: 40 },
     attrs: {
@@ -73,11 +73,9 @@ export const Woman = joint.dia.Element.define(
   }
 );
 
-
-
 export const PCNProcessEntity = joint.dia.Element.define(
   'custom.PCNProcessEntity',
-  {
+  { // Visual Attributes
     size: { width: 800, height: 600 }, 
     attrs: {
       // The Main Outer Border
@@ -90,131 +88,110 @@ export const PCNProcessEntity = joint.dia.Element.define(
         // rx: 5,
         // ry: 5
       },
-      // The Title Label
-      labelName: {
-        text: 'name',
-        // fill: '#795548',
-        // fontSize: 16,
-        // fontWeight: 'bold',
-        // refX: '50%',
-        // refY: 20, // 20px from top
-        // textAnchor: 'middle'
-      },
-      labelOrder: {
-        text: 'order',
-        // fill: '#795548',
-        // fontSize: 16,
-        // fontWeight: 'bold',
-        // refX: '50%',
-        // refY: 20, // 20px from top
-        // textAnchor: 'middle'
-      },
+      // // The Title Label
+      // labelName: {
+      //   text: 'name',
+      //   // fill: '#795548',
+      //   // fontSize: 16,
+      //   // fontWeight: 'bold',
+      //   // refX: '50%',
+      //   // refY: 20, // 20px from top
+      //   // textAnchor: 'middle'
+      // },
+      // labelOrder: {
+      //   text: 'order',
+      //   // fill: '#795548',
+      //   // fontSize: 16,
+      //   // fontWeight: 'bold',
+      //   // refX: '50%',
+      //   // refY: 20, // 20px from top
+      //   // textAnchor: 'middle'
+      // },
       
       CompartmentLeftDir: {
         refWidth: '20%', // Take up 1/5 the width
-        refHeight: '80%', // Take up remaining height
+        refHeight: '95%', // Take up remaining height
         refX: '0%',       // Start at the left edge
-        refY: '20%',      // Start below the header
-        fill: 'rgba(33, 150, 243, 0.1)', // Light blue tint
-        // stroke: '#795548',
+        refY: '5%',      // Start below the header
+        fill: 'rgba(255, 255, 255, 1)', 
+        stroke: '#000000ff',
         strokeWidth: 1,
         // strokeDasharray: '5,5' // Dashed line to imply "internal area"
       },
-      // menLabel: {
-      //   text: 'Men',
-      //   fontSize: 12,
-      //   fill: '#333',
-      //   refX: '25%', // Center of the left half (50% / 2)
-      //   refY: '25%', // Just inside the compartment
-      //   textAnchor: 'middle'
-      // },
-
       CompartmentLeftSur: {
         refWidth: '20%',
-        refHeight: '80%',
+        refHeight: '95%',
         refX: '20%',      // Start after the left compartment
-        refY: '20%',
-        fill: 'rgba(233, 30, 99, 0.1)', // Light pink tint
-        // stroke: '#795548',
+        refY: '5%',
+        fill: 'rgba(255, 255, 255, 1)', 
+        stroke: '#000000ff',
         strokeWidth: 1,
         // strokeDasharray: '5,5'
       },
-      // womenLabel: {
-      //   text: 'Women',
-      //   fontSize: 12,
-      //   fill: '#333',
-      //   refX: '75%', // Center of the right half
-      //   refY: '25%',
-      //   textAnchor: 'middle'
-      // },
-
       CompartmentInd: {
         refWidth: '20%',
-        refHeight: '80%',
+        refHeight: '95%',
         refX: '40%',      // Start after the left compartments
-        refY: '20%',
-        fill: 'rgba(255, 0, 0, 1)', // Light pink tint
-        // stroke: '#795548',
+        refY: '5%',
+        fill: 'rgba(255, 255, 255, 1)', 
+        stroke: '#000000ff',
         strokeWidth: 1,
         // strokeDasharray: '5,5'
       },
-
       CompartmentRightSur: {
         refWidth: '20%',
-        refHeight: '80%',
+        refHeight: '95%',
         refX: '60%',      // Start at the middle
-        refY: '20%',
-        fill: 'rgba(51, 0, 255, 1)', // Light pink tint
-        // stroke: '#795548',
+        refY: '5%',
+        fill: 'rgba(255, 255, 255, 1)', 
+        stroke: '#000000ff',
         strokeWidth: 1,
         // strokeDasharray: '5,5'
       },
       CompartmentRightDir: {
         refWidth: '20%',
-        refHeight: '80%',
+        refHeight: '95%',
         refX: '80%',      // Start at the middle
-        refY: '20%',
-        fill: 'rgba(251, 255, 0, 1)', // Light pink tint
-        // stroke: '#795548',
+        refY: '5%',
+        fill: 'rgba(255, 255, 255, 1)', 
+        stroke: '#000000ff',
         strokeWidth: 1,
         // strokeDasharray: '5,5'
       },
     }
   },
-  {
+  { // Visual Structure
     markup: [
       { tagName: 'rect', selector: 'body' },
-      { tagName: 'text', selector: 'labelName' },
-      { tagName: 'text', selector: 'labelOrder' },
-      
-      // The two compartment rectangles
-      { tagName: 'rect', selector: 'CompartmentLeftDir' },
+      // { tagName: 'text', selector: 'labelName' },
+      // { tagName: 'text', selector: 'labelOrder' },
       { tagName: 'rect', selector: 'CompartmentLeftSur' },
       { tagName: 'rect', selector: 'CompartmentInd' },
-      // { tagName: 'text', selector: 'menLabel' },
       { tagName: 'rect', selector: 'CompartmentRightSur' },
       { tagName: 'rect', selector: 'CompartmentRightDir' },
-      // { tagName: 'text', selector: 'womenLabel' }
+      { tagName: 'rect', selector: 'CompartmentLeftDir' },
     ],
+  },
+  { // Behavior
     rules: {
       canEmbed: function(childElement) {
         const type = childElement.get('type');
         // Define accepted types
-        const allowed = ['custom.Man', 'custom.Woman'];
+        const allowed = ['custom.LeftDir', 'custom.LeftSur', 'custom.Individual', 'custom.RightSur', 'custom.RightDir'];
         return allowed.includes(type);
       },
       
       // OPTIONAL: Map types to specific compartment selectors
       getCompartmentSelector: function(childElement) {
         const type = childElement.get('type');
-        if (type === 'custom.Man') return 'CompartmentLeftDir'; // The SVG selector
-        if (type === 'custom.Woman') return 'CompartmentLeftSur'; // The SVG selector
+        if (type === 'custom.LeftDir') return 'CompartmentLeftDir'; // The SVG selector
+        if (type === 'custom.LeftSur') return 'CompartmentLeftSur'; // The SVG selector
         if (type === 'custom.Individual') return 'CompartmentInd'; // The SVG selector
         if (type === 'custom.RightSur') return 'CompartmentRightSur'; // The SVG selector
         if (type === 'custom.RightDir') return 'CompartmentRightDir'; // The SVG selector
         return null;
       }
-    },
+    }
   }
 );
 

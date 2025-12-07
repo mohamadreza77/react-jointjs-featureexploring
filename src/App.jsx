@@ -1,7 +1,7 @@
-import JointEditor from "./JointEditor";
+import Editor from "./PCNDiagram";
 
 function App() {
-  return <JointEditor />;
+  return <Editor />;
 }
 
 export default App;
