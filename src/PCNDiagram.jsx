@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as joint from "jointjs";
 import { restrictTranslate, autoEmbedAll } from "./util";
-import { LeftDir, LeftSur, PCNProcessEntity } from "./PCNDiagramElements";
+import { PCNDoAndWaitStep_CompartmentLeftDir, PCNDoAndWaitStep_CompartmentRightDir, PCNMonetaryBenefit_CompartmentStandardProcessTags, PCNProcessEntity, PCNStandardStep_CompartmentLeftDir } from "./PCNDiagramElements";
 
 export default function Editor() {
   const containerRef = useRef(null);
@@ -25,18 +25,33 @@ export default function Editor() {
     PCNDiagramElements.position(100, 100);
     PCNDiagramElements.addTo(graph);
 
-    // Create Man (Position him in the LEFT compartment)
-    const leftDir = new LeftDir();
-    // Family is at x=100. Left compartment is roughly 100 to 300.
-    leftDir.position(440, 480);
-    leftDir.addTo(graph);
+    // // Create Man (Position him in the LEFT compartment)
+    // const leftDir = new LeftDir();
+    // // Family is at x=100. Left compartment is roughly 100 to 300.
+    // leftDir.position(440, 480);
+    // leftDir.addTo(graph);
 
-    // Create Woman (Position her in the RIGHT compartment)
-    const leftSur = new LeftSur();
-    // Family is at x=100. Right compartment starts at x=300 (100 + 50% width).
-    leftSur.position(350, 180);
-    leftSur.addTo(graph);
+    // // Create Woman (Position her in the RIGHT compartment)
+    // const leftSur = new LeftSur();
+    // // Family is at x=100. Right compartment starts at x=300 (100 + 50% width).
+    // leftSur.position(350, 180);
+    // leftSur.addTo(graph);
 
+    const pcnStandardStep = new PCNStandardStep_CompartmentLeftDir();
+    pcnStandardStep.position(200, 200);
+    pcnStandardStep.addTo(graph);
+
+    const pcnDoAndWaitStep = new PCNDoAndWaitStep_CompartmentLeftDir();
+    pcnDoAndWaitStep.position(100, 100);
+    pcnDoAndWaitStep.addTo(graph);
+    
+    const pcnDoAndWaitStep2 = new PCNDoAndWaitStep_CompartmentRightDir();
+    pcnDoAndWaitStep2.position(300, 100);
+    pcnDoAndWaitStep2.addTo(graph);
+
+    const pcnStandardStep2 = new PCNMonetaryBenefit_CompartmentStandardProcessTags();
+    pcnStandardStep2.position(400, 300);
+    pcnStandardStep2.addTo(graph);
     autoEmbedAll(graph);
   }, []);
 
