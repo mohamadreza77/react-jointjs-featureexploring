@@ -6,7 +6,7 @@
  */
 import * as joint from "jointjs";
 
-export const autoEmbedAll = (graph) => {
+export const autoEmbedAll = (graph, paper) => {
   // 1. Get all elements (ignore links)
   const elements = graph.getElements();
 
@@ -27,6 +27,34 @@ export const autoEmbedAll = (graph) => {
       // Does the parent allow this type of child?
       if (parentRules.canEmbed(child)) {
         parent.embed(child);
+        // We want to determiene the position of the child here
+        // 2. Determine Position
+        // We need the parent's View to find sub-elements (compartments)
+        const parentView = paper.findViewByModel(parent);
+        
+        // Default position: Center of the parent
+        let targetBBox = parent.getBBox(); 
+
+        // IF the parent defines specific compartments (like 'restrictTranslate')
+        if (parentRules.getCompartmentSelector && parentView) {
+          const selector = parentRules.getCompartmentSelector(child);
+          const compartmentNode = parentView.findBySelector(selector)[0];
+
+          if (compartmentNode) {
+            // Get the global bounding box of that specific compartment
+            targetBBox = joint.V(compartmentNode).bbox(false, paper.viewport);
+          }
+        }
+
+        // 3. Center the child inside the target area (Compartment or Parent)
+        const width = child.getBBox().width;
+        const height = child.getBBox().height;
+        
+        // simple centering math
+        const centerX = targetBBox.x + (targetBBox.width / 2) - (width / 2);
+        const centerY = targetBBox.y + (targetBBox.height / 2) - (height / 2);
+
+        child.position(centerX, centerY);
       }
     });
   });

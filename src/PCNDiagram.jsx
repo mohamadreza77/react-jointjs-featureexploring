@@ -1,7 +1,16 @@
 import { useEffect, useRef } from "react";
 import * as joint from "jointjs";
 import { restrictTranslate, autoEmbedAll } from "./util";
-import { PCNDoAndWaitStep_CompartmentLeftDir, PCNDoAndWaitStep_CompartmentRightDir, PCNMonetaryBenefit_CompartmentStandardProcessTags, PCNProcessEntity, PCNStandardStep_CompartmentLeftDir } from "./PCNDiagramElements";
+import {
+  PCNDoAndWaitStep_CompartmentLeftDir,
+  PCNDoAndWaitStep_CompartmentRightDir,
+  PCNMonetaryBenefit_CompartmentStandardProcessTags1,
+  PCNProcessEntity,
+  PCNStandardStep_CompartmentLeftDir,
+  PCNStandardStep_CompartmentLeftSur,
+  PCNStandardStep_CompartmentRightDir,
+  PCNWaitStep_CompartmentLeftSur,
+} from "./PCNDiagramElements";
 
 export default function Editor() {
   const containerRef = useRef(null);
@@ -12,47 +21,42 @@ export default function Editor() {
     const paper = new joint.dia.Paper({
       el: containerRef.current,
       model: graph,
-      width: 900,
+      width: 1800,
       height: 900,
       gridSize: 10,
       drawGrid: true,
-      restrictTranslate: restrictTranslate
+      restrictTranslate: restrictTranslate,
     });
-    
 
     // Create Family
     const PCNDiagramElements = new PCNProcessEntity();
     PCNDiagramElements.position(100, 100);
     PCNDiagramElements.addTo(graph);
 
-    // // Create Man (Position him in the LEFT compartment)
-    // const leftDir = new LeftDir();
-    // // Family is at x=100. Left compartment is roughly 100 to 300.
-    // leftDir.position(440, 480);
-    // leftDir.addTo(graph);
-
-    // // Create Woman (Position her in the RIGHT compartment)
-    // const leftSur = new LeftSur();
-    // // Family is at x=100. Right compartment starts at x=300 (100 + 50% width).
-    // leftSur.position(350, 180);
-    // leftSur.addTo(graph);
-
     const pcnStandardStep = new PCNStandardStep_CompartmentLeftDir();
-    pcnStandardStep.position(200, 200);
     pcnStandardStep.addTo(graph);
-
     const pcnDoAndWaitStep = new PCNDoAndWaitStep_CompartmentLeftDir();
-    pcnDoAndWaitStep.position(100, 100);
     pcnDoAndWaitStep.addTo(graph);
-    
+
+
+
+    const pcnInnovationStep = new PCNStandardStep_CompartmentRightDir();
+    pcnInnovationStep.addTo(graph);
     const pcnDoAndWaitStep2 = new PCNDoAndWaitStep_CompartmentRightDir();
-    pcnDoAndWaitStep2.position(300, 100);
     pcnDoAndWaitStep2.addTo(graph);
 
-    const pcnStandardStep2 = new PCNMonetaryBenefit_CompartmentStandardProcessTags();
-    pcnStandardStep2.position(400, 300);
+
+
+    const pcnStandardStep44 = new PCNStandardStep_CompartmentLeftSur();
+    pcnStandardStep44.addTo(graph);
+    const pcnStandardStep3 = new PCNWaitStep_CompartmentLeftSur();
+    pcnStandardStep3.addTo(graph);
+
+    const pcnStandardStep2 =
+      new PCNMonetaryBenefit_CompartmentStandardProcessTags1();
     pcnStandardStep2.addTo(graph);
-    autoEmbedAll(graph);
+
+    autoEmbedAll(graph, paper);
   }, []);
 
   return (
