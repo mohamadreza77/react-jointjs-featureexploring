@@ -8,35 +8,43 @@ export const PCNProcessEntity = joint.dia.Element.define(
     size: { width: 800, height: 600 },
     attrs: {
       // The Main Outer Border
-      body: {
+      triangle: {
         refWidth: "100%",
         refHeight: "100%",
+        fill: "rgba(249, 12, 12, 0.92)",
+        // The path data: 
+        // M 0 30   -> Start at left, 30px down (start of rectangle)
+        // L 50 0   -> Line to top middle (tip of triangle)
+        // L 100 30 -> Line to right, 30px down (end of triangle)
+        // Z        -> Close path
+        d: 'M 0 100 L 400 0 L 800 100 Z',
       },
-      // // The Title Label
-      // labelName: {
-      //   text: 'name',
-      //   // fill: '#795548',
-      //   // fontSize: 16,
-      //   // fontWeight: 'bold',
-      //   // refX: '50%',
-      //   // refY: 20, // 20px from top
-      //   // textAnchor: 'middle'
-      // },
-      // labelOrder: {
-      //   text: 'order',
-      //   // fill: '#795548',
-      //   // fontSize: 16,
-      //   // fontWeight: 'bold',
-      //   // refX: '50%',
-      //   // refY: 20, // 20px from top
-      //   // textAnchor: 'middle'
-      // },
-
+      
+      nameLabel: {
+        // fill: '#795548',
+        // fontSize: 16,
+        // fontWeight: 'bold',
+        refX: '45%',
+        refY: "12%", // 20px from top
+        refWidth: "25%",
+        refHeight: "3%"
+        // textAnchor: 'middle'
+      },
+      orderLabel: {
+        // fill: '#795548',
+        // fontSize: 16,
+        // fontWeight: 'bold',
+        refX: '50%',
+        refY: "7%", // 20px from top
+        refWidth: "5%",
+        refHeight: "3%"
+        // textAnchor: 'middle'
+      },
       CompartmentLeftDir: {
         refWidth: "20%", // Take up 1/5 the width
-        refHeight: "95%", // Take up remaining height
+        refHeight: "80%", // Take up remaining height
         refX: "0%", // Start at the left edge
-        refY: "5%", // Start below the header
+        refY: "20%", // Start below the header
         // fill: "rgba(255, 255, 255, 1)",
         // stroke: "#000000ff",
         // strokeWidth: 1,
@@ -44,9 +52,9 @@ export const PCNProcessEntity = joint.dia.Element.define(
       },
       CompartmentLeftSur: {
         refWidth: "20%",
-        refHeight: "95%",
+        refHeight: "80%",
         refX: "20%", // Start after the left compartment
-        refY: "5%",
+        refY: "20%",
         // fill: "rgba(255, 255, 255, 1)",
         // stroke: "#000000ff",
         // strokeWidth: 1,
@@ -54,9 +62,9 @@ export const PCNProcessEntity = joint.dia.Element.define(
       },
       CompartmentInd: {
         refWidth: "20%",
-        refHeight: "95%",
+        refHeight: "80%",
         refX: "40%", // Start after the left compartments
-        refY: "5%",
+        refY: "20%",
         // fill: "rgba(255, 255, 255, 1)",
         // stroke: "#000000ff",
         // strokeWidth: 1,
@@ -64,9 +72,9 @@ export const PCNProcessEntity = joint.dia.Element.define(
       },
       CompartmentRightSur: {
         refWidth: "20%",
-        refHeight: "95%",
+        refHeight: "80%",
         refX: "60%", // Start at the middle
-        refY: "5%",
+        refY: "20%",
         // fill: "rgba(255, 255, 255, 1)",
         // stroke: "#000000ff",
         // strokeWidth: 1,
@@ -74,9 +82,9 @@ export const PCNProcessEntity = joint.dia.Element.define(
       },
       CompartmentRightDir: {
         refWidth: "20%",
-        refHeight: "95%",
+        refHeight: "80%",
         refX: "80%", // Start at the middle
-        refY: "5%",
+        refY: "20%",
         // fill: "rgba(255, 255, 255, 1)",
         // stroke: "#000000ff",
         // strokeWidth: 1,
@@ -87,9 +95,9 @@ export const PCNProcessEntity = joint.dia.Element.define(
   {
     // Visual Structure
     markup: [
-      { tagName: "rect", selector: "body" },
-      // { tagName: 'text', selector: 'labelName' },
-      // { tagName: 'text', selector: 'labelOrder' },
+      { tagName: "path", selector: "triangle" },
+      { tagName: 'text', selector: 'nameLabel' },
+      { tagName: 'text', selector: 'orderLabel' },
       { tagName: "rect", selector: "CompartmentLeftSur" },
       { tagName: "rect", selector: "CompartmentInd" },
       { tagName: "rect", selector: "CompartmentRightSur" },
@@ -215,19 +223,28 @@ export const PCNStandardStep_CompartmentLeftDir = joint.dia.Element.define(
       CompartmentStandardProcessTags: {
         refWidth: '100%',
         refHeight: '100%',
-        fill: 'rgba(255, 255, 255, 0.5)',
-        stroke: 'black',
-        strokeWidth: 1,
-        rx: 8,
-        ry: 8
+        // fill: 'rgba(255, 255, 255, 0.5)',
+        // stroke: 'black',
+        // strokeWidth: 1,
+        // rx: 8,
+        // ry: 8
       },
+      actionLabel: { 
+        text: 'Action field here',  
+        refX: '18%',
+        refY: '28%',
+        refWidth: '90px',
+        refHeight: '44%',
+        whiteSpace: 'normal',
+      }
     },
   },
   {
     // Visual Structure
     markup: [
       { tagName: "rect", selector: "CompartmentStandardProcessTags" },
-      { tagName: "rect", selector: "body" }
+      { tagName: "rect", selector: "body" },
+      { tagName: 'text', selector: 'actionLabel' }
     ],
   },
   {
@@ -278,11 +295,11 @@ export const PCNDoAndWaitStep_CompartmentLeftDir = joint.dia.Element.define(
       CompartmentStandardProcessTags: {
         refWidth: '100%',
         refHeight: '100%',
-        fill: 'rgba(255, 255, 255, 0.5)',
-        stroke: 'black',
-        strokeWidth: 1,
-        rx: 8,
-        ry: 8
+        // fill: 'rgba(255, 255, 255, 0.5)',
+        // stroke: 'black',
+        // strokeWidth: 1,
+        // rx: 8,
+        // ry: 8
       },
     },
   },
@@ -343,11 +360,11 @@ export const PCNWaitStep_CompartmentLeftDir = joint.dia.Element.define(
       CompartmentStandardProcessTags: {
         refWidth: '100%',
         refHeight: '100%',
-        fill: 'rgba(255, 255, 255, 0.5)',
-        stroke: 'black',
-        strokeWidth: 1,
-        rx: 8,
-        ry: 8
+        // fill: 'rgba(255, 255, 255, 0.5)',
+        // stroke: 'black',
+        // strokeWidth: 1,
+        // rx: 8,
+        // ry: 8
       },
     },
   },
@@ -408,11 +425,11 @@ export const PCNInnovationStep_CompartmentLeftDir = joint.dia.Element.define(
       CompartmentStandardProcessTags: {
         refWidth: '100%',
         refHeight: '100%',
-        fill: 'rgba(255, 255, 255, 0.5)',
-        stroke: 'black',
-        strokeWidth: 1,
-        rx: 8,
-        ry: 8
+        // fill: 'rgba(255, 255, 255, 0.5)',
+        // stroke: 'black',
+        // strokeWidth: 1,
+        // rx: 8,
+        // ry: 8
       },
     },
   },
@@ -473,11 +490,11 @@ export const PCNOutsourcedStep_CompartmentLeftDir = joint.dia.Element.define(
       CompartmentStandardProcessTags: {
         refWidth: '100%',
         refHeight: '100%',
-        fill: 'rgba(255, 255, 255, 0.5)',
-        stroke: 'black',
-        strokeWidth: 1,
-        rx: 8,
-        ry: 8
+        // fill: 'rgba(255, 255, 255, 0.5)',
+        // stroke: 'black',
+        // strokeWidth: 1,
+        // rx: 8,
+        // ry: 8
       },
     },
   },
@@ -538,11 +555,11 @@ export const PCNDecisionStep_CompartmentLeftDir = joint.dia.Element.define(
       CompartmentStandardProcessTags: {
         refWidth: '100%',
         refHeight: '100%',
-        fill: 'rgba(255, 255, 255, 0.5)',
-        stroke: 'black',
-        strokeWidth: 1,
-        rx: 8,
-        ry: 8
+        // fill: 'rgba(255, 255, 255, 0.5)',
+        // stroke: 'black',
+        // strokeWidth: 1,
+        // rx: 8,
+        // ry: 8
       },
     },
   },
@@ -603,11 +620,11 @@ export const PCNReference_CompartmentLeftDir = joint.dia.Element.define(
       CompartmentStandardProcessTags: {
         refWidth: '100%',
         refHeight: '100%',
-        fill: 'rgba(255, 255, 255, 0.5)',
-        stroke: 'black',
-        strokeWidth: 1,
-        rx: 8,
-        ry: 8
+        // fill: 'rgba(255, 255, 255, 0.5)',
+        // stroke: 'black',
+        // strokeWidth: 1,
+        // rx: 8,
+        // ry: 8
       },
     },
   },
@@ -733,11 +750,11 @@ export const PCNDoAndWaitStep_CompartmentLeftSur = joint.dia.Element.define(
       CompartmentStandardProcessTags: {
         refWidth: '100%',
         refHeight: '100%',
-        fill: 'rgba(255, 255, 255, 0.5)',
-        stroke: 'black',
-        strokeWidth: 1,
-        rx: 8,
-        ry: 8
+        // fill: 'rgba(255, 255, 255, 0.5)',
+        // stroke: 'black',
+        // strokeWidth: 1,
+        // rx: 8,
+        // ry: 8
       },
     },
   },

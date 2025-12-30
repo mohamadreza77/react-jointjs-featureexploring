@@ -29,7 +29,12 @@ export default function Editor() {
     });
 
     // Create Family
-    const PCNDiagramElements = new PCNProcessEntity();
+    const PCNDiagramElements = new PCNProcessEntity({
+      attrs: {
+        nameLabel: { text: "PCN Diagram Elements" },
+        orderLabel: { text: "Order: 1" },
+      },
+    });
     PCNDiagramElements.position(100, 100);
     PCNDiagramElements.addTo(graph);
 
