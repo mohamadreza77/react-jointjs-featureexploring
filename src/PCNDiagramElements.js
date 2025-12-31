@@ -8,16 +8,52 @@ export const PCNProcessEntity = joint.dia.Element.define(
     size: { width: 800, height: 600 },
     attrs: {
       // The Main Outer Border
-      triangle: {
+      TopProcessEntityFigure: {
         refWidth: "100%",
-        refHeight: "100%",
-        fill: "rgba(249, 12, 12, 0.92)",
+        refHeight: "10%",
+        refX: "0%",
+        refY: "0%",
+        fill: "#FFFFFF",
+        stroke: "#000000ff",
         // The path data: 
         // M 0 30   -> Start at left, 30px down (start of rectangle)
         // L 50 0   -> Line to top middle (tip of triangle)
         // L 100 30 -> Line to right, 30px down (end of triangle)
         // Z        -> Close path
         d: 'M 0 100 L 400 0 L 800 100 Z',
+      },
+
+      dashedLine1: {
+        rfefWidth: '0%',
+        refHeight: '83%',
+        refX: '0%',
+        refY: '17%',
+        d: 'M 160 0 L 160 498',
+        stroke: '#000000ff',
+      },
+      dashedLine2: {
+        rfefWidth: '0%',
+        refHeight: '83%',
+        refX: '0%',
+        refY: '17%',
+        d: 'M 320 0 L 320 498',
+        stroke: '#000000ff',
+      },
+      dashedLine3: {
+        rfefWidth: '0%',
+        refHeight: '83%',
+        refX: '0%',
+        refY: '17%',
+        d: 'M 480 0 L 480 498',
+        stroke: '#000000ff',
+      },
+      dashedLine4: {
+        rfefWidth: '0%',
+        refHeight: '83%',
+        refX: '0%',
+        refY: '17%',
+        d: 'M 640 0 L 640 498',
+        stroke: '#000000ff',
       },
       
       nameLabel: {
@@ -45,7 +81,7 @@ export const PCNProcessEntity = joint.dia.Element.define(
         refHeight: "80%", // Take up remaining height
         refX: "0%", // Start at the left edge
         refY: "20%", // Start below the header
-        // fill: "rgba(255, 255, 255, 1)",
+        fill: "rgba(255, 255, 255, 1)",
         // stroke: "#000000ff",
         // strokeWidth: 1,
         // strokeDasharray: '5,5' // Dashed line to imply "internal area"
@@ -55,7 +91,7 @@ export const PCNProcessEntity = joint.dia.Element.define(
         refHeight: "80%",
         refX: "20%", // Start after the left compartment
         refY: "20%",
-        // fill: "rgba(255, 255, 255, 1)",
+        fill: "rgba(255, 255, 255, 1)",
         // stroke: "#000000ff",
         // strokeWidth: 1,
         // strokeDasharray: '5,5'
@@ -65,7 +101,7 @@ export const PCNProcessEntity = joint.dia.Element.define(
         refHeight: "80%",
         refX: "40%", // Start after the left compartments
         refY: "20%",
-        // fill: "rgba(255, 255, 255, 1)",
+        fill: "rgba(255, 255, 255, 1)",
         // stroke: "#000000ff",
         // strokeWidth: 1,
         // strokeDasharray: '5,5'
@@ -75,7 +111,7 @@ export const PCNProcessEntity = joint.dia.Element.define(
         refHeight: "80%",
         refX: "60%", // Start at the middle
         refY: "20%",
-        // fill: "rgba(255, 255, 255, 1)",
+        fill: "rgba(255, 255, 255, 1)",
         // stroke: "#000000ff",
         // strokeWidth: 1,
         // strokeDasharray: '5,5'
@@ -85,17 +121,26 @@ export const PCNProcessEntity = joint.dia.Element.define(
         refHeight: "80%",
         refX: "80%", // Start at the middle
         refY: "20%",
-        // fill: "rgba(255, 255, 255, 1)",
+        fill: "rgba(255, 255, 255, 1)",
         // stroke: "#000000ff",
         // strokeWidth: 1,
         // strokeDasharray: '5,5'
+      },
+
+      ButtonProcessEntityFigure: {
+        refWidth: "100%",
+        refHeight: "100%",
+        refX: "0%",
+        refY: "0%",
+        d: "M 0 599 L 800 599", 
+        stroke: "rgba(0, 0, 0, 1)",
       },
     },
   },
   {
     // Visual Structure
     markup: [
-      { tagName: "path", selector: "triangle" },
+      { tagName: "path", selector: "TopProcessEntityFigure" },
       { tagName: 'text', selector: 'nameLabel' },
       { tagName: 'text', selector: 'orderLabel' },
       { tagName: "rect", selector: "CompartmentLeftSur" },
@@ -103,6 +148,11 @@ export const PCNProcessEntity = joint.dia.Element.define(
       { tagName: "rect", selector: "CompartmentRightSur" },
       { tagName: "rect", selector: "CompartmentRightDir" },
       { tagName: "rect", selector: "CompartmentLeftDir" },
+      { tagName: "path", selector: "dashedLine1" },
+      { tagName: "path", selector: "dashedLine2" },
+      { tagName: "path", selector: "dashedLine3" },
+      { tagName: "path", selector: "dashedLine4" },
+      { tagName: "path", selector: "ButtonProcessEntityFigure" },
     ],
   },
   {
